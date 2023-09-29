@@ -16,3 +16,11 @@ after_success:
   - docker build -t Chabilkansal/multi-nginx ./nginx
   - docker build -t Chabilkansal/multi-server ./server
   - docker build -t Chabilkansal/multi-worker ./worker
+  # Log in to the docker CLI
+  - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
+  
+  # Take the images and push them to docker hub
+  - docker push Chabilkansal/multi-client
+  - docker push Chabilkansal/multi-nginx
+  - docker push Chabilkansal/multi-server
+  - docker push Chabilkansal/multi-worker
