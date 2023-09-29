@@ -6,21 +6,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t chabilkansal/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t chabil/react-test -f ./client/Dockerfile.dev ./client
 
 scripts:
-  - docker run -e CI=true chabilkansal/react-test npm run test
+  - docker run -e CI=true chabil/react-test npm run test
 
 after_success:
-  - docker build -t chabilkansal/multi-client ./client
-  - docker build -t chabilkansal/multi-nginx ./nginx
-  - docker build -t chabilkansal/multi-server ./server
-  - docker build -t chabilkansal/multi-worker ./worker
+  - docker build -t chabil/multi-client ./client
+  - docker build -t chabil/multi-nginx ./nginx
+  - docker build -t chabil/multi-server ./server
+  - docker build -t chabil/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin 
   
   # Take the images and push them to docker hub
-  - docker push chabilkansal/multi-client
-  - docker push chabilkansal/multi-nginx
-  - docker push chabilkansal/multi-server
-  - docker push chabilkansal/multi-worker
+  - docker push chabil/multi-client
+  - docker push chabil/multi-nginx
+  - docker push chabil/multi-server
+  - docker push chabil/multi-worker
