@@ -24,3 +24,15 @@ after_success:
   - docker push chabil/multi-nginx
   - docker push chabil/multi-server
   - docker push chabil/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: ap-south-1
+  app: multi-docker
+  env: Multi-docker-env
+  bucket_name: elasticbeanstalk-ap-south-1-431029909730
+  bucket_path: docker-multi
+  on:
+    branch: main
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
